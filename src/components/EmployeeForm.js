@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import employees from '../data/employees';
+import { Redirect } from 'react-router-dom';
 
 export default class EmployeeForm extends Component {
   constructor() {
     super()
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state ={
       nome: '',
       cpf: '',
@@ -30,6 +33,14 @@ export default class EmployeeForm extends Component {
     this.setState(() => ({
       [e.target.name]: e.target.value,
     }))
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    const newEmployee = this.state;
+    if (!employees.find((employee) => employee.cpf === newEmployee.cpf)){
+      employees.push(newEmployee);};
+     return <Redirect to="/" />;
   }
 
   render() {
@@ -96,16 +107,18 @@ export default class EmployeeForm extends Component {
         <label>
           Dependentes:<br/>
             <input
+            name="dependentes"
             type="number"
             value={dependentes}
             onChange={this.handleChange}
+            step={1}
             min={0}
             placeholder="Nº de dependentes"
             required
           />
         </label>              
           </div>
-        <button type="submit">Cadastrar</button>
+        <button type="button" onClick={this.handleClick}>Cadastrar</button>
       </form>
     </div>
     )
