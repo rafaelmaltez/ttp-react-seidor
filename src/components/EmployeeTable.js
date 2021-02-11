@@ -3,7 +3,7 @@ import { IRRFDiscountCalc } from '../data/baseCalcs';
 
 import { Redirect } from 'react-router-dom';
 
-export default class TableRows extends Component {
+export default class EmployeeTable extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
