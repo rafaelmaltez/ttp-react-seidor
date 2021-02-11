@@ -37,9 +37,9 @@ export default class EmployeeTable extends Component {
           </tr>
            
          {employees
-          .map((employee) => {
+          .map((employee, index) => {
             const { nome, cpf, salario, desconto, dependentes } = employee;
-            return <tr>
+            return <tr key={index + 1}>
               <td>{nome}</td>
               <td>{cpf}</td>
               <td>{salario}</td>
