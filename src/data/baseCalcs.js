@@ -1,12 +1,12 @@
-const funcionario1= {
-  "nome": "Sandra Giovanna Drumond",
-  "cpf": "715.890.756-25",
-  "salario": 4522,
-  "desconto": 492.03,
-  "dependentes": 3
-}
+// const funcionario1= {
+//   "nome": "Sandra Giovanna Drumond",
+//   "cpf": "715.890.756-25",
+//   "salario": 4522,
+//   "desconto": 492.03,
+//   "dependentes": 3
+// }
 
-const basicIRSalaryCalc = (employee) => {
+export const basicIRSalaryCalc = (employee) => {
   const { salario, desconto, dependentes } = employee;
   return dependentes === 0 
   ? salario - desconto
@@ -14,8 +14,9 @@ const basicIRSalaryCalc = (employee) => {
 }
 
 
-const IRRFDiscountCalc = (baseSalary) => {  
-    if(baseSalary < 1903.99) {
+export const IRRFDiscountCalc = (employee) => {  
+  const baseSalary = basicIRSalaryCalc(employee)  ;
+  if(baseSalary < 1903.99) {
       return 0;
   } else if (baseSalary < 2826.66) {
     return baseSalary * 0.075 - 142.80;

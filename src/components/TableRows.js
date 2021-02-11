@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { IRRFDiscountCalc } from '../data/baseCalcs';
 
 export default class TableRows extends Component {
   render() {
@@ -24,9 +25,9 @@ export default class TableRows extends Component {
               <td>{salario}</td>
               <td>{desconto}</td>
               <td>{dependentes}</td>
-              <td>150</td>
+              <td>{IRRFDiscountCalc(employee)}</td>
               <td><button type="button" className="btn-delete">Delete</button></td>
-              <td>Editar</td>
+              <td><button type="button" className="btn-edit">Editar</button></td>
             </tr>
           })}
         </table>
