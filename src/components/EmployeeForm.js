@@ -10,9 +10,9 @@ export default class EmployeeForm extends Component {
     this.state ={
       nome: '',
       cpf: '',
-      dependentes: 0,
+      salario: 0,
       desconto: 0,
-      salario: 0 
+      dependentes: 0,
     };
   }
 
@@ -35,12 +35,11 @@ export default class EmployeeForm extends Component {
     }))
   }
 
-  handleClick(e) {
-    e.preventDefault();
+  handleClick(e) {    
     const newEmployee = this.state;
     if (!employees.find((employee) => employee.cpf === newEmployee.cpf)){
       employees.push(newEmployee);};
-     return <Redirect to="/" />;
+     <Redirect to="/" />;
   }
 
   render() {

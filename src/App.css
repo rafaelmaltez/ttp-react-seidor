@@ -54,3 +54,7 @@ th, td {
 .form-group {
   margin-bottom: 15px;
 }
+
+button {
+  padding: 5px;
+}
