@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { registerEmployeeAction, updateEmployeeAction }  from '../actions';
+import { registerEmployeeAction }  from '../actions';
 
 class EmployeeForm extends Component {
   constructor() {
     super()
-    this.handleChange = this.handleChange.bind(this);   
+    this.handleChange = this.handleChange.bind(this);  
     this.state ={
       nome: '',
       cpf: '',
@@ -33,18 +33,10 @@ class EmployeeForm extends Component {
       [e.target.name]: e.target.value,
     }))
   }
-
-  handleClick() {
-    const { add, update } = this.props;
-    const pathname = this.history.location;
-    if (pathname === '/register') {
-      return () => add(this.state);
-    }
-    return () => update(this.state);
-  }
-
+ 
   render() {    
     const { nome, cpf, salario, dependentes, desconto } = this.state;
+    const { register } = this.props;
     return (
       <div className="form-container">
       <form>
@@ -118,7 +110,7 @@ class EmployeeForm extends Component {
           />
         </label>              
           </div>
-        <button type="button" onClick={ this.handleClick }>Cadastrar</button>
+        <button type="button" onClick={ () => register(this.state) } >Cadastrar</button>
       </form>
     </div>
     )
@@ -126,8 +118,7 @@ class EmployeeForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  add: (employee) => dispatch(registerEmployeeAction(employee)),
-  update: (employee) => dispatch(updateEmployeeAction(employee)),
+  register: (employee) => dispatch(registerEmployeeAction(employee)),
 });
 
-export default connect(mapDispatchToProps)(EmployeeForm)
+export default connect(null, mapDispatchToProps)(EmployeeForm)

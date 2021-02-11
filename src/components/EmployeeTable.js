@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { IRRFDiscountCalc } from '../data/baseCalcs';
+import { connect } from 'react-redux';
+import { removeEmployeeAction } from '../actions';
 
 import { Redirect } from 'react-router-dom';
 
-export default class EmployeeTable extends Component {
+class EmployeeTable extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -21,7 +23,7 @@ export default class EmployeeTable extends Component {
   }
 
   render() {
-    const { employees } = this.props;
+    const { employees, remove } = this.props;
     const { shouldRedirect, currentEmployee } = this.state;
     if(shouldRedirect) return <Redirect to={`/edit/${currentEmployee}`} />;
     return (
@@ -46,7 +48,7 @@ export default class EmployeeTable extends Component {
               <td>{desconto}</td>
               <td>{dependentes}</td>
               <td>{IRRFDiscountCalc(employee)}</td>
-              <td><button type="button" className="btn-delete">Delete</button></td>
+              <td><button type="button" className="btn-delete" onClick={() => remove(employee)}>Delete</button></td>
               <td><button name={nome} type="button" className="btn-edit" onClick={this.handleClick}>Editar
               </button></td>
             </tr>
@@ -56,3 +58,12 @@ export default class EmployeeTable extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  employees: state.employeeReducer,
+});
+const mapDispatchToProps = dispatch => ({
+  remove: (employee) => dispatch(removeEmployeeAction(employee))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeTable);

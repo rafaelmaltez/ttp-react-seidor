@@ -12,7 +12,7 @@ export default class Edit extends Component {
       <div>
         <h1>Editar funcionário cadastrado</h1>
         <p>Modifique os dados do funcionário e clique em Cadastrar</p>
-        <EmployeeForm employeeToEdit={ employeeToEdit}/>
+        <EmployeeForm value="editar" employeeToEdit={ employeeToEdit}/>
       </div>
     )
   }
