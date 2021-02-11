@@ -6,8 +6,8 @@ export default class Header extends Component {
     return (
       <header>
         <nav>
-          <Link to='/'>Inicio</Link>
-          <Link to="/register">Cadastro de Novos Funcionários</Link>
+          <Link to="/register">Registrar Funcionário</Link>
+          <Link to='/'>Tabelas e cálculos do IRRF</Link>
         </nav>
       </header>     
     )

@@ -2,18 +2,18 @@ const INITIAL_STATE = []
 
 function employeeReducer(state = INITIAL_STATE, action){
   switch(action.type) {
-    case 'ADD_EMPLOYEE':
+    case 'REGISTER_EMPLOYEE':
       return [...state, action.employee]
-    case 'DELETE_EMPLOYEE':
+    case 'REMOVE_EMPLOYEE':
       const newState = state
         .filter((employee) => employee.cpf !== action.employee.cpf);
       return newState;
     case 'UPDATE_EMPLOYEE':
-      const updatedEmployee = action.employee;
+      // const updatedEmployee = action.employee;
       const updateState = state
         .map((employee) => {
-          if(employee.cpf === updatedEmployee.cpf){
-            return {...employee, ...updatedEmployee};
+          if(employee.cpf === action.employee.cpf){
+            return {...employee, ...action.employee};
           }
           return employee;
         });
