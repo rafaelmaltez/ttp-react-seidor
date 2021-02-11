@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import employees from '../data/employees';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { registerEmployeeAction, updateEmployeeAction }  from '../actions';
 
-export default class EmployeeForm extends Component {
+class EmployeeForm extends Component {
   constructor() {
     super()
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);   
     this.state ={
       nome: '',
       cpf: '',
@@ -35,14 +34,16 @@ export default class EmployeeForm extends Component {
     }))
   }
 
-  handleClick(e) {    
-    const newEmployee = this.state;
-    if (!employees.find((employee) => employee.cpf === newEmployee.cpf)){
-      employees.push(newEmployee);};
-     <Redirect to="/" />;
+  handleClick() {
+    const { add, update } = this.props;
+    const pathname = this.history.location;
+    if (pathname === '/register') {
+      return () => add(this.state);
+    }
+    return () => update(this.state);
   }
 
-  render() {
+  render() {    
     const { nome, cpf, salario, dependentes, desconto } = this.state;
     return (
       <div className="form-container">
@@ -117,9 +118,16 @@ export default class EmployeeForm extends Component {
           />
         </label>              
           </div>
-        <button type="button" onClick={this.handleClick}>Cadastrar</button>
+        <button type="button" onClick={ this.handleClick }>Cadastrar</button>
       </form>
     </div>
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  add: (employee) => dispatch(registerEmployeeAction(employee)),
+  update: (employee) => dispatch(updateEmployeeAction(employee)),
+});
+
+export default connect(mapDispatchToProps)(EmployeeForm)
