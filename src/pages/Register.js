@@ -10,7 +10,7 @@ export default class Register extends Component {
     return (
       <>
         <h1>Cadastro de novo funcioário</h1>
-        <h2>Informe os dados do funcionário:</h2>
+        <p>Informe os dados do novo funcionário e clique em Cadastrar</p>
         <EmployeeForm />
       </>
     )

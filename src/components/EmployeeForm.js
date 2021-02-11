@@ -1,7 +1,39 @@
 import React, { Component } from 'react'
 
 export default class EmployeeForm extends Component {
+  constructor() {
+    super()
+    this.handleChange = this.handleChange.bind(this);
+    this.state ={
+      nome: '',
+      cpf: '',
+      dependentes: 0,
+      desconto: 0,
+      salario: 0 
+    };
+  }
+
+  componentDidMount() {
+    if(this.props.employeeToEdit){
+    const { nome = '', cpf = '', dependentes = 0, desconto = 0, salario = 0 } = this.props.employeeToEdit;
+    this.setState(() => ({
+      nome,
+      cpf,
+      dependentes,
+      desconto,
+      salario,
+    }))
+    }
+  }
+
+  handleChange(e) {
+    this.setState(() => ({
+      [e.target.name]: e.target.value,
+    }))
+  }
+
   render() {
+    const { nome, cpf, salario, dependentes, desconto } = this.state;
     return (
       <div className="form-container">
       <form>
@@ -10,6 +42,8 @@ export default class EmployeeForm extends Component {
             Nome Completo:<br/>
               <input
               name="nome"
+              value={nome}
+              onChange={this.handleChange}
               type="text"
               placeholder="Ex: Rafael Maltez de A. Costa"
               required
@@ -21,6 +55,8 @@ export default class EmployeeForm extends Component {
             CPF:<br/>
             <input
               name="cpf"
+              value={cpf}
+              onChange={this.handleChange}
               type="text"
               placeholder="Ex: 000.000.000-00"
               pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
@@ -33,6 +69,8 @@ export default class EmployeeForm extends Component {
             Salário Bruto<br/>
             <input
               name="salario"
+              value={salario}
+              onChange={this.handleChange}
               type="number"
               step={0.01}
               placeholder="Informe o salario"
@@ -45,6 +83,8 @@ export default class EmployeeForm extends Component {
           Desconto da previdencia<br/>
             <input
             name="desconto"
+            value={desconto}
+            onChange={this.handleChange}
             type="number"
             step={0.01}
             placeholder="Informe o desconto"
@@ -57,6 +97,8 @@ export default class EmployeeForm extends Component {
           Dependentes:<br/>
             <input
             type="number"
+            value={dependentes}
+            onChange={this.handleChange}
             min={0}
             placeholder="Nº de dependentes"
             required
