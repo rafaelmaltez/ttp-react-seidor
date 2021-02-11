@@ -1,9 +1,29 @@
 import React, { Component } from 'react'
 import { IRRFDiscountCalc } from '../data/baseCalcs';
 
+import { Redirect } from 'react-router-dom';
+
 export default class TableRows extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      shouldRedirect: false,
+      currentEmployee: '',
+    }
+  }
+
+  handleClick(e) {
+    this.setState(() => ({
+      currentEmployee: e.target.name,
+      shouldRedirect:true,
+    }))
+  }
+
   render() {
     const { employees } = this.props;
+    const { shouldRedirect, currentEmployee } = this.state;
+    if(shouldRedirect) return <Redirect to={`/edit/${currentEmployee}`} />;
     return (
       <div>
         <table>
@@ -27,7 +47,8 @@ export default class TableRows extends Component {
               <td>{dependentes}</td>
               <td>{IRRFDiscountCalc(employee)}</td>
               <td><button type="button" className="btn-delete">Delete</button></td>
-              <td><button type="button" className="btn-edit">Editar</button></td>
+              <td><button name={nome} type="button" className="btn-edit" onClick={this.handleClick}>Editar
+              </button></td>
             </tr>
           })}
         </table>
