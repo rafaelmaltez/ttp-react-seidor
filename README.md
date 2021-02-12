@@ -4,7 +4,7 @@
 
 Para iniciar o projeto faça um clone do mesmo utilizando o comando:
 
-### `git clone git@github.com:rafaelmaltez/ttp-seidor.git
+### `git clone git@github.com:rafaelmaltez/ttp-seidor.git`
 
  e no diretório do projeto use o seguinte comando:
 
