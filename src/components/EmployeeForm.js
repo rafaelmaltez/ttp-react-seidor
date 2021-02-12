@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { registerEmployeeAction, updateEmployeeAction }  from '../actions';
 
 class EmployeeForm extends Component {
@@ -119,6 +120,12 @@ class EmployeeForm extends Component {
     </div>
     )
   }
+}
+
+EmployeeForm.propTypes = {
+  register: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 }
 
 const mapDispatchToProps = dispatch => ({

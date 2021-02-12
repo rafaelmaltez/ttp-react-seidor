@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { IRRFDiscountCalc } from '../data/baseCalcs';
 import { connect } from 'react-redux';
 import { removeEmployeeAction } from '../actions';
@@ -58,6 +59,17 @@ class EmployeeTable extends Component {
     )
   }
 }
+
+EmployeeTable.propTypes = {
+  remove: PropTypes.func.isRequired,
+  employee: PropTypes.shape({
+    nome: PropTypes.string,
+    cpf: PropTypes.string,
+    salario: PropTypes.number,
+    desconto: PropTypes.number,
+    dependentes: PropTypes.number
+  }).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   employees: state.employeeReducer,
