@@ -46,7 +46,7 @@ function employeeReducer(state = INITIAL_STATE, action){
           }
           return employee;
         });      
-      return updateState;
+      return updateState.concat(action.employee);
     case 'REMOVE_EMPLOYEE':
       const newState = state
         .filter((employee) => employee.cpf !== action.employee.cpf);

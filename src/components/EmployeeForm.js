@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { registerEmployeeAction }  from '../actions';
+import { registerEmployeeAction, updateEmployeeAction }  from '../actions';
 
 class EmployeeForm extends Component {
   constructor() {
@@ -36,10 +36,10 @@ class EmployeeForm extends Component {
  
   render() {    
     const { nome, cpf, salario, dependentes, desconto } = this.state;
-    const { register } = this.props;
+    const { register, update, type } = this.props;
     return (
       <div className="form-container">
-      <form>
+      <form method="POST">
         <div className="form-group">
           <label>
             Nome Completo:<br/>
@@ -110,7 +110,11 @@ class EmployeeForm extends Component {
           />
         </label>              
           </div>
-        <button type="button" onClick={ () => register(this.state) } >Cadastrar</button>
+          { type === 'register'
+            ?  <button type="submit" onClick={ () => register(this.state) } >Cadastrar</button>
+            :  <button type="submit" onClick={ () => update(this.state) } >Cadastrar</button>        
+        }
+       
       </form>
     </div>
     )
@@ -119,6 +123,7 @@ class EmployeeForm extends Component {
 
 const mapDispatchToProps = dispatch => ({
   register: (employee) => dispatch(registerEmployeeAction(employee)),
+  update: (employee) => dispatch(updateEmployeeAction(employee))
 });
 
 export default connect(null, mapDispatchToProps)(EmployeeForm)

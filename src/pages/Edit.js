@@ -6,13 +6,12 @@ export default class Edit extends Component {
   render() {
     const {match: { params: { name } } } = this.props;
     const employeeToEdit = employees
-    .find((employee) => employee.nome === name );
-    console.log(employeeToEdit)
+    .find((employee) => employee.nome === name );    
     return (
       <div>
         <h1>Editar funcionário cadastrado</h1>
         <p>Modifique os dados do funcionário e clique em Cadastrar</p>
-        <EmployeeForm value="editar" employeeToEdit={ employeeToEdit}/>
+        <EmployeeForm employeeToEdit={ employeeToEdit}/>
       </div>
     )
   }

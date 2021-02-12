@@ -14,7 +14,7 @@ export default class Register extends Component {
         <h1>Cadastro de novo funcioário</h1>
         <p>Informe os dados do novo funcionário e clique em Cadastrar</p>
         <Provider store={store}>
-          <EmployeeForm value="cadastrar"/>
+          <EmployeeForm type="register"/>
         </Provider>
       </>
     )
