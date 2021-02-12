@@ -17,3 +17,8 @@ ou caso esteja usando o NPM:
 A aplicação normalmente irá iniciar no navegador no seguinte link:
  [http://localhost:3000](http://localhost:3000)
 
+
+ Para ver uma versão live, pode acessar através do seguinte site:
+
+ [ttp-frontend-rafaelmaltez](https://ttp-frontend-rafaelmaltez.netlify.app/)
+
