@@ -39,7 +39,7 @@ class EmployeeForm extends Component {
     const { register, update, type } = this.props;
     return (
       <div className="form-container">
-      <form method="POST">
+      <form >
         <div className="form-group">
           <label>
             Nome Completo:<br/>
@@ -111,8 +111,8 @@ class EmployeeForm extends Component {
         </label>              
           </div>
           { type === 'register'
-            ?  <button type="submit" onClick={ () => register(this.state) } >Cadastrar</button>
-            :  <button type="submit" onClick={ () => update(this.state) } >Cadastrar</button>        
+            ?  <button type="button" onClick={ () => register(this.state) } >Cadastrar</button>
+            :  <button type="button" onClick={ () => update(this.state) } >Cadastrar</button>        
         }
        
       </form>
